@@ -21,3 +21,11 @@ Home page
     http://localhost:8080/actuator/info
     http://localhost:8080/actuator
 
+# Hot reloading
+
+Start with
+
+    mvn spring-boot:run
+
+Rebuild project in IDEA and application will be hot reloaded.
+

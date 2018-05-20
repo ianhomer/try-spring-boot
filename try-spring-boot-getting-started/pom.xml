@@ -21,6 +21,19 @@
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
     <dependency>
+      <!--
+          With spring-boot-devtools as dependency you can start spring boot with
+          mvn spring-boot:run, and when you rebuild project in IDEA the spring application
+          is hot reloaded.
+          -->
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <!--
+          Dependency is only needed during development for this module
+       -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
