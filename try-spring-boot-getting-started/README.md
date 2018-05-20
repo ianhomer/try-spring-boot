@@ -15,6 +15,11 @@ Home page
 
     http://localhost:8080
 
+API
+
+    http://localhost:8080/api/song
+
+
 # Actuators
 
     http://localhost:8080/actuator/health
