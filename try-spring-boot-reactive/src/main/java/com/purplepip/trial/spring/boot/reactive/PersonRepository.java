@@ -18,7 +18,10 @@ package com.purplepip.trial.spring.boot.reactive;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-public interface PersonRespository extends ReactiveMongoRepository<Person, String> {
+public interface PersonRepository extends ReactiveMongoRepository<Person, String> {
   Flux<Person> findByName(String name);
+
+  Mono<Person> findOneByName(final String name);
 }

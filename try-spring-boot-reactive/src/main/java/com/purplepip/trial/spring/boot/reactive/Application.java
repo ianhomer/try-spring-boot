@@ -15,38 +15,42 @@
 
 package com.purplepip.trial.spring.boot.reactive;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.method;
-import static org.springframework.web.reactive.function.server.RequestPredicates.path;
-import static org.springframework.web.reactive.function.server.RouterFunctions.nest;
-import static org.springframework.web.reactive.function.server.RouterFunctions.route;
-import static org.springframework.web.reactive.function.server.ServerResponse.ok;
-
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
-import org.springframework.http.HttpMethod;
-import org.springframework.web.reactive.function.server.RequestPredicates;
-import org.springframework.web.reactive.function.server.RouterFunction;
+import reactor.core.publisher.Flux;
 
 @SpringBootApplication
 @EnableReactiveMongoRepositories
-public class Application {
+@Slf4j
+public class Application implements CommandLineRunner {
+  @Autowired
+  private PersonRepository personRepository;
+
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
   }
 
-  @Bean
-  RouterFunction<?> routes(PersonRespository personRespository) {
-    return nest(path("/person"),
-        route(RequestPredicates.GET("/{id}"),
-            request -> ok().body(personRespository.findById(request.pathVariable("id")),
-                Person.class))
-            .andRoute(method(HttpMethod.POST),
-                request -> {
-                  personRespository.insert(request.bodyToMono(Person.class)).subscribe();
-                  return ok().build();
-                })
-    );
+  @Override
+  public void run(String args[]) {
+    final Person john = new Person("john");
+    final Person jane = new Person("jane");
+
+    personRepository.saveAll(Flux.just(john, jane)).subscribe();
+
+    personRepository
+        .findAll()
+        .log()
+        .map(Person::getName)
+        .subscribe(s -> LOG.info("Person : {}", s));
+
+    personRepository
+        .findOneByName("jane")
+        .log()
+        .map(Person::getName)
+        .subscribe(s -> LOG.info("Person : {}", s));
   }
 }

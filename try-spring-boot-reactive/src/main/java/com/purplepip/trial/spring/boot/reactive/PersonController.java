@@ -15,20 +15,29 @@
 
 package com.purplepip.trial.spring.boot.reactive;
 
+import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/person")
 public class PersonController {
   @Autowired
-  private PersonRespository personRespository;
+  private PersonRepository repository;
+
+  @PostMapping("/person")
+  Mono<Void> create(@RequestBody Publisher<Person> personStream) {
+    return repository.saveAll(personStream).then();
+  }
 
   @GetMapping
-  public Flux<Person> index() {
-    return personRespository.findAll();
+  Flux<Person> list() {
+    return repository.findAll();
   }
 }
