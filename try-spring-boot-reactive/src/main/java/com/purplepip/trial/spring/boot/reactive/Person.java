@@ -13,15 +13,19 @@
  * limitations under the License.
  */
 
-package com.purplepip.trial.spring.boot.starter;
+package com.purplepip.trial.spring.boot.reactive;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class SongController {
-  @RequestMapping("/api/song")
-  public Song song() {
-    return new Song("name");
-  }
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Data
+@NoArgsConstructor
+@Document
+public class Person {
+  @Id
+  private String id;
+  private String name;
 }

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/try-spring-boot.iml" filepath="$PROJECT_DIR$/.idea/try-spring-boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/try-spring-boot-getting-started/try-spring-boot-getting-started.iml" filepath="$PROJECT_DIR$/try-spring-boot-getting-started/try-spring-boot-getting-started.iml" />
+      <module fileurl="file://$PROJECT_DIR$/try-spring-boot-reactive/try-spring-boot-reactive.iml" filepath="$PROJECT_DIR$/try-spring-boot-reactive/try-spring-boot-reactive.iml" />
     </modules>
   </component>
 </project>

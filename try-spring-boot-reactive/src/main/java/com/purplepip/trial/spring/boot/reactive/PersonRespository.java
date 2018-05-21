@@ -13,15 +13,12 @@
  * limitations under the License.
  */
 
-package com.purplepip.trial.spring.boot.starter.model;
+package com.purplepip.trial.spring.boot.reactive;
 
-import lombok.Data;
 
-@Data
-public class Song {
-  private String name;
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import reactor.core.publisher.Flux;
 
-  public Song(String name) {
-    this.name = name;
-  }
+public interface PersonRespository extends ReactiveMongoRepository<Person, String> {
+  Flux<Person> findByName(String name);
 }

@@ -15,13 +15,13 @@
 
 package com.purplepip.trial.spring.boot.starter;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Data;
 
-@RestController
-public class SongController {
-  @RequestMapping("/api/song")
-  public Song song() {
-    return new Song("name");
+@Data
+public class Song {
+  private String name;
+
+  public Song(String name) {
+    this.name = name;
   }
 }
