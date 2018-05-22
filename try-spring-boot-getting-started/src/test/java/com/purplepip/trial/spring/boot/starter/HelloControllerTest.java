@@ -15,7 +15,7 @@
 
 package com.purplepip.trial.spring.boot.starter;
 
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -41,6 +41,6 @@ public class HelloControllerTest {
   public void getHello() throws Exception {
     mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
-        .andExpect(content().string(equalTo("Greetings from Spring Boot!")));
+        .andExpect(content().string(containsString("Try Spring Boot")));
   }
 }

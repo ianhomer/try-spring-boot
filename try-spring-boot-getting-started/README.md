@@ -15,16 +15,6 @@ Visit
 
 And follow the link
 
-API
-
-    http://localhost:8080/api/song
-
-
-## Metrics
-
-    http://localhost:8080/actuator/metrics
-    http://localhost:8080/actuator/metrics/jvm.memory.used
-
 # Hot reloading
 
 Start with
@@ -40,6 +30,8 @@ Rebuild project in IDEA and application will be hot reloaded.
       -d '{"configuredLevel": "DEBUG"}'
 
 # Shutdown with
+
+(TODO : Haven't got this working yet)
 
     curl -i -X POST http://localhost:8080/actuator/loggers/com.purplepip \
       -H "Content-Type: application/json; charset=utf-8" \
