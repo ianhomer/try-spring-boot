@@ -41,7 +41,9 @@ public class HomeController {
   public String slow(Model model) throws InterruptedException {
     slowCounter.increment();
     populate(model);
+    LOG.debug("Sleeping to slow page down ...");
     Thread.sleep(2000);
+    LOG.debug("... awake now");
     return "index";
   }
 

@@ -33,3 +33,14 @@ Start with
 
 Rebuild project in IDEA and application will be hot reloaded.
 
+# Increase logging level
+
+    curl -i -X POST http://localhost:8080/actuator/loggers/com.purplepip \
+      -H "Content-Type: application/json; charset=utf-8" \
+      -d '{"configuredLevel": "DEBUG"}'
+
+# Shutdown with
+
+    curl -i -X POST http://localhost:8080/actuator/loggers/com.purplepip \
+      -H "Content-Type: application/json; charset=utf-8" \
+      -d '{"configuredLevel": "DEBUG"}'

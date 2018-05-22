@@ -12,9 +12,13 @@
     <p>Today is <span th:text="${now}"/></p>
 
     <h2>Actuators</h2>
+
+    <p>Actuator endpoints let you monitor and interact with your application.</p>
+
     <ul>
       <li><a href="/actuator">All Actuators</a></li>
       <li><a href="/actuator/beans">Beans</a></li>
+      <li><a href="/actuator/my">My custom actuators</a></li>
     </ul>
 
     <h3>Metrics</h3>
@@ -26,6 +30,27 @@
 
     <p><a href="/slow">Slow page (for metrics experiments)</a></p>
 
+    <h4>Property Origins</h4>
+    <ul>
+      <li><a href="/actuator/env">Environment Properties</a></li>
+    </ul>
+
+    <p>e.g. management.endpoints.web.exposure.include comes from
+      class path resource [application.properties]:5:43</p>
+
+    <h2>Logging</h2>
+
+    <ul>
+      <li><a href="/actuator/loggers">Logging</a></li>
+      <li><a href="/actuator/loggers/com.purplepip">Logging : com.purplepip</a></li>
+    </ul>
+
+    <pre>
+    curl -i -X POST http://localhost:8080/actuator/loggers/com.purplepip \
+    -H "Content-Type: application/json; charset=utf-8" \
+    -d '{"configuredLevel": "DEBUG"}'
+    </pre>
+
     <h2>REST</h2>
     <ul>
       <li><a href="/api/song">Song JSON</a> form the SongController</li>
@@ -33,6 +58,7 @@
 
     <h2>Misc</h2>
     <ul>
+      <li><a href="/actuator/threaddump">Thread Dump</a></li>
       <li><a href="/static.html">A static resource</a> from resources/static folder</li>
     </ul>
 
