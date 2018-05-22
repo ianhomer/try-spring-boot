@@ -1,5 +1,14 @@
+
+spring:
+  management:
+    endpoints:
+
 # https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#endpoints
 # By default, all endpoints other than shutdown are enabled and the only health and info
 # are exposed.  We'll expose them all for now ...
+#
+# See http://localhost:8080/actuator/ for all actuators
+#
+      web.exposure.include:*
 
-management.endpoints.web.exposure.include=*
+  thymeleaf.cache: false

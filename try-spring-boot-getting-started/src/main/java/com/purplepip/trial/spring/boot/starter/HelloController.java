@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class HelloController {
-  @RequestMapping("/")
+  @RequestMapping("/greetings")
   public String index() {
     LOG.info("Called {} index", HelloController.class.getSimpleName());
     return "Greetings from Spring Boot!";
