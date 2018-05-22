@@ -9,23 +9,16 @@ Or start with
 
     mvn spring-boot:run
 
-# Visit web site
-
-Home page
+Visit
 
     http://localhost:8080
+
+And follow the link
 
 API
 
     http://localhost:8080/api/song
 
-
-# Actuators
-
-    http://localhost:8080/actuator/health
-    http://localhost:8080/actuator/info
-    http://localhost:8080/actuator/metrics
-    http://localhost:8080/actuator
 
 ## Metrics
 
