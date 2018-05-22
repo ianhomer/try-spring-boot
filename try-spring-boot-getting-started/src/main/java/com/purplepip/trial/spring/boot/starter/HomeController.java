@@ -36,16 +36,12 @@ public class HomeController {
     return "index";
   }
 
-  @Timed(value = "home.slow", longTask = true)
+  @Timed(value = "home.slow")
   @RequestMapping("/slow")
-  public String slow(Model model) {
+  public String slow(Model model) throws InterruptedException {
     slowCounter.increment();
     populate(model);
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      LOG.error("Slow page sleep interrupted", e.getMessage());
-    }
+    Thread.sleep(2000);
     return "index";
   }
 
