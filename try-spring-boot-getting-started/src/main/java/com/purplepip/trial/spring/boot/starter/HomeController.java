@@ -15,16 +15,41 @@
 
 package com.purplepip.trial.spring.boot.starter;
 
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Metrics;
 import java.time.LocalDate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@Timed
+@Slf4j
 public class HomeController {
+  private final Counter slowCounter = Metrics.counter("home.slow");
+
   @RequestMapping("/")
   public String index(Model model) {
-    model.addAttribute("now", LocalDate.now());
+    populate(model);
     return "index";
+  }
+
+  @Timed(value = "home.slow", longTask = true)
+  @RequestMapping("/slow")
+  public String slow(Model model) {
+    slowCounter.increment();
+    populate(model);
+    try {
+      Thread.sleep(2000);
+    } catch (InterruptedException e) {
+      LOG.error("Slow page sleep interrupted", e.getMessage());
+    }
+    return "index";
+  }
+
+  private void populate(Model model) {
+    model.addAttribute("now", LocalDate.now());
   }
 }
