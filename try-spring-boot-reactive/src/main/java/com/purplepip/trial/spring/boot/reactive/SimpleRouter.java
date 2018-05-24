@@ -44,8 +44,11 @@ public class SimpleRouter {
         ).andRoute(
             path("/person1"),
             request -> repository.findOneByName("jane")
-                .flatMap(person -> ok().body(fromObject(person))
-                    .switchIfEmpty(notFound().build()))
+                .flatMap(person ->
+                    ok()
+                        .body(fromObject(person))
+                        .switchIfEmpty(notFound().build())
+                )
         );
   }
 }
