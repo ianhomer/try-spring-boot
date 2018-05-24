@@ -18,6 +18,7 @@ package com.purplepip.trial.spring.boot.reactive;
 import static org.springframework.web.reactive.function.BodyInserters.fromObject;
 import static org.springframework.web.reactive.function.server.RequestPredicates.path;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
+import static org.springframework.web.reactive.function.server.ServerResponse.notFound;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 import org.springframework.context.annotation.Bean;
@@ -28,7 +29,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 public class SimpleRouter {
   @Bean
-  public RouterFunction<ServerResponse> simpleRoute() {
+  public RouterFunction<ServerResponse> simpleRoute(PersonRepository repository) {
     return
         route(
             path("/hi"),
@@ -40,6 +41,11 @@ public class SimpleRouter {
             request -> ok().body(
                 fromObject("Bye!")
             )
+        ).andRoute(
+            path("/person1"),
+            request -> repository.findOneByName("jane")
+                .flatMap(person -> ok().body(fromObject(person))
+                    .switchIfEmpty(notFound().build()))
         );
   }
 }
