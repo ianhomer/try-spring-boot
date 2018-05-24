@@ -3,7 +3,10 @@ spring:
     name: try-spring-boot-getting-started
   profiles:
     active:
-      - safe
+#
+# Enable "danger" profile by default
+#
+      - danger
 
 management:
   endpoints:
@@ -22,12 +25,15 @@ management:
 thymeleaf.cache: false
 
 ---
+#
+# Properties when profile "danger" is enabled
+#
 spring:
   profiles: danger
 
 management:
   endpoint:
 #
-# Shutdown by HTTP signal
+# Application can be shut down by HTTP signal
 #
     shutdown.enabled: true

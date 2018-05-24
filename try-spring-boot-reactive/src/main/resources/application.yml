@@ -1,23 +1,39 @@
 spring:
-  management:
-    endpoints:
-# https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#endpoints
-# By default, all endpoints other than shutdown are enabled and the only health and info
-# are exposed.  We'll expose them all for now ...
+  application:
+    name: try-spring-boot-getting-started
+  profiles:
+    active:
+#
+# Enable "danger" profile by default
+#
+      - danger
+
+management:
+  endpoints:
+    web:
+      exposure:
 #
 # See http://localhost:8080/actuator/ for all actuators
 #
-      web.exposure.include: '*'
-    endpoint:
-#
-# Shutdown endpoint doesn't work - sorry
-# as per https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
-#
-      shutdown.enabled: true
+        include: "*"
 
-    metrics:
-      distribution:
-        percentiles-histogram.http.server.requests: true
-        sla.http.server.requests: 1ms,5ms
+  metrics:
+    distribution:
+      percentiles-histogram.http.server.requests: true
+      sla.http.server.requests: 1ms,5ms,50ms,500ms,5s
 
-  thymeleaf.cache: false
+thymeleaf.cache: false
+
+---
+#
+# Properties when profile "danger" is enabled
+#
+spring:
+  profiles: danger
+
+management:
+  endpoint:
+#
+# Application can be shut down by HTTP signal
+#
+    shutdown.enabled: true
