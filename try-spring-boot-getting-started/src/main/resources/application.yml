@@ -1,16 +1,33 @@
 spring:
+  application:
+    name: try-spring-boot-getting-started
+  profiles:
+    active:
+      - safe
 
 management:
   endpoints:
     web:
       exposure:
+#
+# See http://localhost:8080/actuator/ for all actuators
+#
         include: "*"
-  endpoint:
-    shutdown.enabled: true
 
   metrics:
     distribution:
       percentiles-histogram.http.server.requests: true
-      sla.http.server.requests: 1ms,5ms
+      sla.http.server.requests: 1ms,5ms,50ms,500ms,5s
 
 thymeleaf.cache: false
+
+---
+spring:
+  profiles: danger
+
+management:
+  endpoint:
+#
+# Shutdown by HTTP signal
+#
+    shutdown.enabled: true
