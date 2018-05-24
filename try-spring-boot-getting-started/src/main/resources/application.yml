@@ -6,10 +6,6 @@ management:
       exposure:
         include: "*"
   endpoint:
-#
-# Shutdown endpoint doesn't work - sorry
-# as per https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
-#
     shutdown.enabled: true
 
   metrics:
