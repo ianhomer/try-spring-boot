@@ -16,24 +16,30 @@
 package com.purplepip.trial.spring.boot.reactive;
 
 import static org.springframework.web.reactive.function.BodyInserters.fromObject;
-import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RequestPredicates.path;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 @Configuration
-public class PersonRouter {
+public class SimpleRouter {
   @Bean
-  public RouterFunction<ServerResponse> personRoute() {
+  public RouterFunction<ServerResponse> simpleRoute() {
     return
-        route(path("/myperson")
-        .and(accept(MediaType.TEXT_PLAIN)),
-        request -> ok().body(fromObject("Hiya")));
+        route(
+            path("/hi"),
+            request -> ok().body(
+                fromObject("Hi!")
+            )
+        ).andRoute(
+            path("/bye"),
+            request -> ok().body(
+                fromObject("Bye!")
+            )
+        );
   }
 }
