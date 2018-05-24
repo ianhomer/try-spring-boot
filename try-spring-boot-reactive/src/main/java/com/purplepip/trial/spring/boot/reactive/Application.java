@@ -20,12 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 import reactor.core.publisher.Flux;
 
 @SpringBootApplication
 @EnableReactiveMongoRepositories
 @Slf4j
+@ComponentScan("com.purplepip.trial.spring.boot.reactive")
 public class Application implements CommandLineRunner {
   @Autowired
   private PersonRepository personRepository;
@@ -39,7 +41,9 @@ public class Application implements CommandLineRunner {
     final Person john = new Person("john");
     final Person jane = new Person("jane");
 
-    personRepository.saveAll(Flux.just(john, jane)).subscribe();
+    personRepository
+        .saveAll(Flux.just(john, jane))
+        .subscribe();
 
     personRepository
         .findAll()

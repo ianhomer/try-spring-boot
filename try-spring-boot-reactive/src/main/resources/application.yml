@@ -1,1 +1,23 @@
-#spring.data.mongodb.database : demo
+spring:
+  management:
+    endpoints:
+# https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Migration-Guide#endpoints
+# By default, all endpoints other than shutdown are enabled and the only health and info
+# are exposed.  We'll expose them all for now ...
+#
+# See http://localhost:8080/actuator/ for all actuators
+#
+      web.exposure.include: '*'
+    endpoint:
+#
+# Shutdown endpoint doesn't work - sorry
+# as per https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
+#
+      shutdown.enabled: true
+
+    metrics:
+      distribution:
+        percentiles-histogram.http.server.requests: true
+        sla.http.server.requests: 1ms,5ms
+
+  thymeleaf.cache: false
