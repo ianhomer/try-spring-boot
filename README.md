@@ -1,13 +1,10 @@
-# TL;DR
-
-    mvn spring-boot:run -pl try-spring-boot-getting-started
-
 # Try Spring Boot
 
 Example Spring Boot application experimenting with various features.
 
+# TL;DR
 
-
+    mvn spring-boot:run -pl try-spring-boot-getting-started
 
 # Quickly create a new project
 
