@@ -64,6 +64,12 @@
 
   <build>
     <plugins>
+      <!-- Opinionated code format -->
+      <plugin>
+        <groupId>com.coveo</groupId>
+        <artifactId>fmt-maven-plugin</artifactId>
+      </plugin>
+      <!-- Spring boot application -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>

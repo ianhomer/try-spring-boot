@@ -29,8 +29,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/person")
 public class PersonController {
-  @Autowired
-  private PersonRepository repository;
+  @Autowired private PersonRepository repository;
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)

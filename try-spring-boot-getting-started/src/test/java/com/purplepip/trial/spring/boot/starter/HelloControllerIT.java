@@ -34,13 +34,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class HelloControllerIT {
 
-  @LocalServerPort
-  private int port;
+  @LocalServerPort private int port;
 
   private URL base;
 
-  @Autowired
-  private TestRestTemplate template;
+  @Autowired private TestRestTemplate template;
 
   @Before
   public void setUp() throws MalformedURLException {

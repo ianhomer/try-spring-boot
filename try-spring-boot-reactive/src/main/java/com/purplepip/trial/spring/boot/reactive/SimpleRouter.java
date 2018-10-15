@@ -30,25 +30,14 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 public class SimpleRouter {
   @Bean
   public RouterFunction<ServerResponse> simpleRoute(PersonRepository repository) {
-    return
-        route(
-            path("/hi"),
-            request -> ok().body(
-                fromObject("Hi!")
-            )
-        ).andRoute(
-            path("/bye"),
-            request -> ok().body(
-                fromObject("Bye!")
-            )
-        ).andRoute(
+    return route(path("/hi"), request -> ok().body(fromObject("Hi!")))
+        .andRoute(path("/bye"), request -> ok().body(fromObject("Bye!")))
+        .andRoute(
             path("/person1"),
-            request -> repository.findOneByName("jane")
-                .flatMap(person ->
-                    ok()
-                        .body(fromObject(person))
-                        .switchIfEmpty(notFound().build())
-                )
-        );
+            request ->
+                repository
+                    .findOneByName("jane")
+                    .flatMap(
+                        person -> ok().body(fromObject(person)).switchIfEmpty(notFound().build())));
   }
 }

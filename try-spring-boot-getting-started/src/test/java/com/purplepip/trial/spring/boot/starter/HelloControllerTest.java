@@ -34,8 +34,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @AutoConfigureMockMvc
 public class HelloControllerTest {
 
-  @Autowired
-  private MockMvc mvc;
+  @Autowired private MockMvc mvc;
 
   @Test
   public void getHello() throws Exception {

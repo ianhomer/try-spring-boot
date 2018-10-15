@@ -29,8 +29,7 @@ import reactor.core.publisher.Flux;
 @Slf4j
 @ComponentScan("com.purplepip.trial.spring.boot.reactive")
 public class Application implements CommandLineRunner {
-  @Autowired
-  private PersonRepository personRepository;
+  @Autowired private PersonRepository personRepository;
 
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
@@ -41,9 +40,7 @@ public class Application implements CommandLineRunner {
     final Person john = new Person("john");
     final Person jane = new Person("jane");
 
-    personRepository
-        .saveAll(Flux.just(john, jane))
-        .subscribe();
+    personRepository.saveAll(Flux.just(john, jane)).subscribe();
 
     personRepository
         .findAll()
