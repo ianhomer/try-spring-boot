@@ -14,6 +14,11 @@
   <name>Try Spring Boot Getting Started</name>
   <version>1.0.0-SNAPSHOT</version>
 
+  <properties>
+    <jacoco.covered.ratio>0.40</jacoco.covered.ratio>
+    <jacoco.missed.count>1</jacoco.missed.count>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -80,6 +85,10 @@
               -->
           <addResources>true</addResources>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
