@@ -11,6 +11,8 @@ spring:
 management:
   endpoints:
     web:
+      server:
+        auto-time-requests: true
       exposure:
 #
 # See http://localhost:8080/actuator/ for all actuators

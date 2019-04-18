@@ -11,9 +11,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="try-spring-boot" target="1.8" />
-      <module name="try-spring-boot-getting-started" target="1.8" />
-      <module name="try-spring-boot-reactive" target="1.8" />
+      <module name="try-spring-boot" target="10" />
+      <module name="try-spring-boot-getting-started" target="10" />
+      <module name="try-spring-boot-reactive" target="10" />
     </bytecodeTargetLevel>
   </component>
 </project>

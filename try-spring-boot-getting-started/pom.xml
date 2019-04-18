@@ -89,6 +89,14 @@
               -->
           <addResources>true</addResources>
         </configuration>
+        <executions>
+          <execution>
+            <id>default-cli</id>
+            <configuration>
+              <jvmArguments>-Dspring.config.additional-location=file:.</jvmArguments>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
